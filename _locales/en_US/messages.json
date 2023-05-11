@@ -1,0 +1,81 @@
+{
+    "appName": {
+        "message": "Bratags - The Bra Price Tracker"
+    },
+    "appShortName": {
+        "message": "Bratags"
+    },
+    "appDescription": {
+        "message": "Simply track bra prices across any sellers",
+        "description": "A description of the extension displayed in the web store."
+    },
+    "shareTitle": {
+        "message": "Bratags is the best way to track bra prices!"
+    },
+    "shareDescription": {
+        "message": "The Bratags Chromium extension make is simple to track bra prices."
+    },
+    "shareQuote": {
+        "message": "Bratags for the LOwest bra prices."
+    },
+    "shareHashtags": {
+        "message": "bra, shopping, pricetracker, fashion"
+    },
+    "defaultTitle": {
+        "message": "Bratags",
+        "description": "Title shown in tooltip."
+    },
+    "keyShortcut1": {
+        "message": "The shortcut opens the popup."
+    },
+    "tag": {
+        "message": "tag"
+    },
+    "BBra1": {
+        "message": "Lucky you, <span class=\"username\">$username$</span> ! 🎉",
+        "placeholders": {
+            "username": {
+              "content": "$1"
+            }
+        }
+    },
+    "BBra2": {
+        "message": "You're the first to tag <sup>(track)</sup> this bra."
+    },
+    "BBra3": {
+        "message": "When you click tag, Bratags will do the heavy lifting and continually track changes, build a visualization graph, and notify you if the price matches your set price."
+    },
+    "BTagNotify1": {
+        "message": "notification price"
+    },
+    "BTagNotify2": {
+        "message": "The value does not appear to be a valid $locale$ currency value.",
+        "placeholders": {
+            "locale": {
+              "content": "$1",
+              "example": "en_US"
+            }
+        }
+    },
+    "BTagNotify3": {
+        "message": "Please enter the price at which you would like to be notified."
+    },
+    "BBra4": {
+        "message": "While you can still create notices, you will not receive notifications until you <a href=\"$url$\" target=\"_blank\" rel=\"noopener\">update your preferences</a>.",
+        "placeholders": {
+            "url": {
+              "content": "$1",
+              "example": "https://bratags.com/settings"
+            }
+        }
+    },
+    "BUnknownRule1a": {
+        "message": "A URL is required."
+    },
+    "BUnknownRule1b": {
+        "message": "Please enter a valid URL."
+    },
+    "BUnknownRule2a": {
+        "message": "Please limit your note to 500 characters."
+    }
+}

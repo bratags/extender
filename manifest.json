@@ -1,0 +1,54 @@
+{
+	"manifest_version": 3,
+	"name": "__MSG_appName__",
+	"version": "0.0.0",
+	"default_locale": "en_US",
+	"description": "__MSG_appDescription__",
+	"author": "Bratags <support@bratags.com> (https://bratags.com/)",
+	"commands": {
+		"open-popup": {
+			"suggested_key": {
+				"default": "Alt+B"
+			},
+			"description": "__MSG_keyShortcut1__"
+		}
+	},
+	"action": {
+		"default_icon": {
+			"16": "/dist/icon/icon16.png",
+			"32": "/dist/icon/icon16@2x.png",
+			"48": "/dist/icon/icon16@3x.png",
+			"64": "/dist/icon/icon32@2x.png",
+			"96": "/dist/icon/icon32@3x.png",
+			"92": "/dist/icon/icon48@2x.png",
+			"144": "/dist/icon/icon48@3x.png",
+			"128": "/dist/icon/icon128.png",
+			"256": "/dist/icon/icon128@2x.png",
+			"344": "/dist/icon/icon128@3x.png"
+		},
+		"default_title": "__MSG_appName__",
+		"default_popup": "/dist/index.html"
+	},
+	"icons": {
+		"16": "/dist/icon/icon16.png",
+		"32": "/dist/icon/icon16@2x.png",
+		"48": "/dist/icon/icon16@3x.png",
+		"64": "/dist/icon/icon32@2x.png",
+		"96": "/dist/icon/icon32@3x.png",
+		"92": "/dist/icon/icon48@2x.png",
+		"144": "/dist/icon/icon48@3x.png",
+		"128": "/dist/icon/icon128.png",
+		"256": "/dist/icon/icon128@2x.png",
+		"344": "/dist/icon/icon128@3x.png"
+	},
+	"background": {
+		"service_worker": "/src/sw.js"
+	},
+	"permissions": ["storage", "background", "tabs", "notifications", "contextMenus", "scripting", "webRequest", "cookies"],
+	"host_permissions": ["<all_urls>"],
+	"externally_connectable": {
+		"matches": ["*://*.bratags.com/*"]
+	},
+	"short_name": "__MSG_appShortName__",
+	"version_name": "0.0.0"
+}
