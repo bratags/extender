@@ -29,15 +29,15 @@
                 We received your feedback about this source.
             </p>
             <p class="text-body-1 mb-8">
-                Note: You can always use our <a href="https://bratags.com/support" target="_blank" rel="noopener">web
+                Note: You can always use our <a href="https://bratags.com/faq" target="_blank" rel="noopener">web
                     form</a> to tag any bras, even if the source isn't yet supported as in this case. In fact doing so will
                 help speed the process of adding full support for the source.
             </p>
         </div>
         <v-spacer></v-spacer>
         <p class="text-center">
-            Please visit <a href="https://bratags.com/support" target="_blank"
-                rel="noopener">https://bratags.com/support</a> if
+            Please visit <a href="https://bratags.com/faq" target="_blank"
+                rel="noopener">https://bratags.com/faq</a> if
             you need more help.
         </p>
     </v-container>

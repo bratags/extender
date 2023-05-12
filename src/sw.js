@@ -12,7 +12,7 @@ importScripts(
 amplitude.getInstance().init("0475f970e02a8182591c0491760d680a");
 
 const VERSION = "0.0.0";
-const INSTALL_URL = "https://blog.bratags.com/install";
+const INSTALL_URL = "https://blog.bratags.com/extension-installed";
 const reSHOPS = new RegExp(/https:\/\/(amazon|walmart|knix).com/i);
 const API_SERVER =
     settings.ENV === "production" ? "api.bratags.com" : "dev-api.bratags.com";
