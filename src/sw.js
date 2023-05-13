@@ -131,7 +131,7 @@ async function updateSources() {
 }
 async function supportedSource(url) {
     const sources = cache.lru.get("sources") || (await updateSources());
-    return sources.find((item) => item.urls.includes(url));
+    return sources.find(item => item.urls.find(itemUrl => url.toLowerCase().includes(itemUrl.toLowerCase())));
 }
 async function popupHandler() {
     let tags;
