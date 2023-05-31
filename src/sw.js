@@ -38,6 +38,7 @@ function requestHandler(details) {
 async function getTagById(id) {
     const response = await fetch(`https://${API_SERVER}/v1/tag/${id}`, {
         mode: "cors",
+        credentials: "include",
     });
     if (/401|500/.test(response.status)) {
         console.error(response);
@@ -57,6 +58,7 @@ async function getTagsByGTIN(gtin) {
         `https://${API_SERVER}/v1/tag/gtin/${gtin}/list`,
         {
             mode: "cors",
+            credentials: "include",
         }
     );
     if (/401|500/.test(response.status)) {
@@ -81,6 +83,7 @@ async function getTagsByURL(url, ignoreShop = false) {
     }
     const response = await fetch(`https://${API_SERVER}/v1/tag/url/list`, {
         mode: "cors",
+        credentials: "include",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
@@ -114,12 +117,10 @@ function sameTagExists(tags, bra) {
 }
 async function updateSources() {
     try {
-        const response = await fetch(
-            `https://${API_SERVER}/v1/grow/sources`,
-            {
-                mode: "cors",
-            }
-        );
+        const response = await fetch(`https://${API_SERVER}/v1/grow/sources`, {
+            mode: "cors",
+            credentials: "include",
+        });
         if (response.ok) {
             const sources = await response.json();
             await cache.lru.set("sources", sources);
@@ -131,7 +132,11 @@ async function updateSources() {
 }
 async function supportedSource(url) {
     const sources = cache.lru.get("sources") || (await updateSources());
-    return sources.find(item => item.urls.find(itemUrl => url.toLowerCase().includes(itemUrl.toLowerCase())));
+    return sources.find((item) =>
+        item.urls.find((itemUrl) =>
+            url.toLowerCase().includes(itemUrl.toLowerCase())
+        )
+    );
 }
 async function popupHandler() {
     let tags;
@@ -193,6 +198,7 @@ async function getSessionId() {
         if (!cookie) {
             await fetch(`https://${API_SERVER}/v1/grow/diversity`, {
                 mode: "cors",
+                credentials: "include",
             });
         }
         retries += 1;

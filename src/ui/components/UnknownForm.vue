@@ -36,8 +36,7 @@
         </div>
         <v-spacer></v-spacer>
         <p class="text-center">
-            Please visit <a href="https://bratags.com/faq" target="_blank"
-                rel="noopener">https://bratags.com/faq</a> if
+            Please visit <a href="https://bratags.com/faq" target="_blank" rel="noopener">https://bratags.com/faq</a> if
             you need more help.
         </p>
     </v-container>
@@ -87,6 +86,7 @@ const submit = async (event) => {
             const response = await fetch(`https://${VITE_API_SERVER}/v1/user/form-unknown-source`,
                 {
                     mode: "cors",
+                    credentials: 'include',
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

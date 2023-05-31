@@ -1,7 +1,8 @@
 <template>
     <v-sheet width="400">
         <v-form v-if="!snackbar.enabled" v-model="valid" @submit.prevent="submit" class="d-flex flex-column">
-            <b-price-suggestion :price="data.fields.price" :disableSuggestion="bra?.gtin == '00000000000000'" @price="priceSuggestionHandler"></b-price-suggestion>
+            <b-price-suggestion :price="data.fields.price" :disableSuggestion="bra?.gtin == '00000000000000'"
+                @price="priceSuggestionHandler"></b-price-suggestion>
             <v-btn :loading="loading" :disabled="!valid" :rounded="loading ? 'xl' : undefined"
                 class="text-h6 text-uppercase" :class="loading ? 'mx-auto' : ''" type="submit">{{
                     i18n.getMessage('tag') }}
@@ -54,6 +55,7 @@ const submit = async (event) => {
             const response = await fetch(`https://${VITE_API_SERVER}/v1/tag`,
                 {
                     mode: "cors",
+                    credentials: 'include',
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
