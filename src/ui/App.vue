@@ -13,12 +13,12 @@
             <v-avatar v-if="isAuthenticated" size="x-small">
                 <v-img :src="user?.picture" :alt="user?.name"></v-img>
             </v-avatar>
-            <v-btn variant="plain" icon density="compact" color="quaternary" @click="login" :loading="loading.login">
+            <v-btn variant="plain" icon density="compact" :id="isAuthenticated ? 'logout' : 'login'" color="quaternary" @click="login" :loading="loading.login">
                 <span class="material-icons">{{
                     isAuthenticated ? "logout" : "login"
                 }}</span>
             </v-btn>
-            <v-btn variant="plain" icon density="compact" color="quaternary" :href="`https://${VITE_SERVER}/settings`" target="_blank" rel="noopener"
+            <v-btn variant="plain" icon density="compact" color="quaternary" id="settings" :href="`https://${VITE_SERVER}/settings`" target="_blank" rel="noopener"
                 class="mr-6">
                 <span class="material-icons">settings</span>
             </v-btn>
