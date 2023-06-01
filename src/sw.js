@@ -148,7 +148,6 @@ async function popupHandler() {
         })
     )?.[0];
     if (!tab) {
-        console.error(tab);
         return;
     }
     // check the sources before anything

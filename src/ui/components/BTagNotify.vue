@@ -1,7 +1,7 @@
 <template>
     <v-sheet width="400">
         <v-form v-if="!snackbar.enabled" v-model="valid" @submit.prevent="submit" class="d-flex flex-column">
-            <b-price-suggestion :price="data.fields.price" :disableSuggestion="bra?.gtin == '00000000000000'"
+            <b-price-suggestion :price="bra?.price" :disableSuggestion="bra?.gtin == '00000000000000'"
                 @price="priceSuggestionHandler"></b-price-suggestion>
             <v-btn :loading="loading" :disabled="!valid" :rounded="loading ? 'xl' : undefined"
                 class="text-h6 text-uppercase" :class="loading ? 'mx-auto' : ''" type="submit">{{
@@ -15,7 +15,7 @@
     </v-sheet>
 </template>
 <script setup>
-import { ref, inject, computed, watch } from "vue"
+import { ref, inject, onMounted, watch } from "vue"
 import { useAuth0 } from "@auth0/auth0-vue"
 
 import BPriceSuggestion from './BPriceSuggestion'
@@ -114,6 +114,22 @@ const submit = async (event) => {
 watch(valid, valid => {
     if (!valid) {
         data.value.disablePriceSuggestion = valid
+    }
+})
+onMounted(() => {
+    console.log(props.bra)
+    if (!props.bra?.band || !props.bra?.cup || !(props.bra?.cup && /^(?:[a-z]\/)*([a-z])\1{0,2}$/i.test(props.bra.cup))) {
+        const message = !props.bra?.band && (!props.bra?.cup || !(props.bra?.cup && /^(?:[a-z]\/)*([a-z])\1{0,2}$/i.test(props.bra.cup)))
+            ? 'Please choose your band and cup size on the product page.'
+            : !props.bra?.band
+                ? 'Please choose your band size on the product page.'
+                : 'Please choose your cup size on the product page.'
+        snackbar.value = {
+            icon: 'notice',
+            header: `More input is needed.`,
+            message,
+            enabled: true
+        }
     }
 })
 </script>

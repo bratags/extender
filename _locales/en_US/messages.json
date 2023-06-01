@@ -19,7 +19,7 @@
         "message": "Bratags for the LOwest bra prices."
     },
     "shareHashtags": {
-        "message": "bra, shopping, pricetracker, fashion"
+        "message": "bra, shopping, price-tracker, fashion"
     },
     "defaultTitle": {
         "message": "Bratags",
@@ -40,7 +40,7 @@
         }
     },
     "BBra2": {
-        "message": "You're the first to tag <sup>(track)</sup> this bra."
+        "message": "You're the first to tag this bra."
     },
     "BBra3": {
         "message": "When you click tag, Bratags will do the heavy lifting and continually track changes, build a visualization graph, and notify you if the price matches your set price."

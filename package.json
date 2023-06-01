@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite --host",
     "dev:extension": "npm-run-all --parallel build:vite:dev watch:rollup:deps",
-    "build:vite:dev": "vite build --mode development --base /dist/ --sourcemap --minify false",
+    "build:vite:dev": "vite build --mode development -w --base /dist/ --sourcemap --minify false",
     "build:dev": "npm-run-all --serial build:vite:dev build:deps",
     "build": "npm-run-all --serial build:vite:prod build:deps",
     "build:vite:prod": "vite build --base /dist/ --sourcemap --minify true",
