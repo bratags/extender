@@ -15,7 +15,7 @@ const VERSION = "0.0.0";
 const INSTALL_URL = "https://blog.bratags.com/extension-installed";
 const reSHOPS = new RegExp(/https:\/\/(amazon|walmart|knix).com/i);
 const API_SERVER =
-    settings.ENV === "production" ? "api.bratags.com" : "api-dev.bratags.com";
+    settings.ENV === "production" ? "api.bratags.com" : "api.dev.bratags.com";
 
 let state = {
     route: {

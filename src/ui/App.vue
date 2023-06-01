@@ -30,7 +30,7 @@
         </v-main>
         <div class="mb-16 ml-8">
             <div class="mb-2 text-caption">
-                <span class="font-weight-bold text-uppercase">sid: </span>{{ sessionId }}
+                <span class="font-weight-bold text-uppercase">username: </span>{{ username }}
             </div>
         </div>
         <v-footer :color="theme === 'light' ? 'grey-lighten-4' : undefined" app class="pa-4 d-flex align-center">
@@ -166,7 +166,7 @@ function routeHandler(path) {
     )
 }
 const username = computed(() => {
-    return user?.sub || sessionId.match(/[^|]*/)[0]
+    return sessionId.match(/[^|]*/)[0]
 })
 provide("username", username)
 </script>
