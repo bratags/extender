@@ -38,7 +38,7 @@ function requestHandler(details) {
 async function getTagById(id) {
     const response = await fetch(`https://${API_SERVER}/v1/tag/${id}`, {
         mode: "cors",
-        credentials: "include",
+        credentials: "include"
     });
     if (/401|500/.test(response.status)) {
         console.error(response);
