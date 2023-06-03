@@ -6,9 +6,7 @@ module.exports = (async () => {
             await test.step('popup should load', async () => {
                 await page.goto(`chrome-extension://${serviceWorker.url().split('/')[2]}/dist/index.html`)
                 await page.bringToFront()
-                await page.reload()
-                await page.waitForSelector('#main')
-                await expect(await page.locator('body')).toContainText(new RegExp(appShortName, 'i'), { useInnerText: true })
+                await expect(await page.locator('#main')).toContainText(new RegExp(appShortName, 'i'), { useInnerText: true })
             })
         })
     })
