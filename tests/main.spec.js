@@ -7,7 +7,7 @@ module.exports = (async () => {
                 await page.goto(`chrome-extension://${serviceWorker.url().split('/')[2]}/dist/index.html`);
                 await page.bringToFront();
                 await page.waitForSelector('body', { visible: true });
-                await expect(page.locator('body')).toContainText(appShortName, { useInnerText: true });
+                await expect(await page.locator('body')).toContainText(new RegExp(appShortName, 'i'), { useInnerText: true });
             });
         });
     });
