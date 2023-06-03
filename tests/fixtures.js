@@ -19,7 +19,8 @@ module.exports = {
                     `--load-extension=${pathToExtension}`,
                     '--no-sandbox'
                 ],
-                devtools: true,
+                slowMo: 2500,
+                devtools: false,
                 screen: {
                     width: 800,
                     height: 600
