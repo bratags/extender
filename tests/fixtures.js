@@ -19,7 +19,7 @@ module.exports = {
                     `--load-extension=${pathToExtension}`,
                     '--no-sandbox'
                 ],
-                slowMo: 2500,
+                slowMo: process.env.CI ? undefined : 250,
                 devtools: false,
                 screen: {
                     width: 800,
