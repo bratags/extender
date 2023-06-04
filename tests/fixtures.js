@@ -34,6 +34,10 @@ module.exports = {
             await context.close()
         },
         serviceWorker: async ({ context }, use) => {
+            await context.route('**', (route) => {
+                const headers = { ...route.request().headers(), 'X-Application': 'playwright' }
+                route.continue({ headers })
+            })
             let [background] = context.serviceWorkers()
             if (!background) {
                 background = await context.waitForEvent('serviceworker')
