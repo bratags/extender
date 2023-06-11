@@ -1,8 +1,6 @@
-const ENV = 'development';
-
 (async function (settings) {
     settings.defaultSettings = {
-        ENV
+        ENV: 'development'
     }
     settings.userSettings = async () => await chrome.storage.local.get('userSettings');
     settings.get = async () => {
