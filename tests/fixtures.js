@@ -45,17 +45,5 @@ module.exports = {
 
             await use(background)
         }
-    }),
-    ids: {
-        theme: {
-            dark: '.v-application.v-theme--dark',
-            light: '.v-application.v-theme--light',
-        },
-        buttons: {
-            theme: 'button[id="theme"]',
-            logout: 'button[id="logout"]',
-            login: 'button[id="login"]',
-            settings: 'button[id="settings"]'
-        }
-    }
+    })
 }
