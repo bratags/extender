@@ -7,7 +7,7 @@
     "build:vite:dev": "vite build --mode development -w --base /dist/ --sourcemap --minify false",
     "build:dev": "npm-run-all --serial build:vite:dev build:deps",
     "build": "npm-run-all --serial build:vite:prod build:deps",
-    "build:vite:prod": "vite build --base /dist/ --sourcemap --minify true",
+    "build:vite:prod": "vite build --mode production --base /dist/ --sourcemap --minify true",
     "build:deps": "cross-env NODE_ENV=production node utils/watch-rollup.js",
     "watch:rollup:deps": "node utils/watch-rollup.js",
     "preview": "vite preview",

@@ -13,7 +13,6 @@ amplitude.getInstance().init("0475f970e02a8182591c0491760d680a");
 
 const VERSION = "0.0.0";
 const INSTALL_URL = "https://blog.bratags.com/extension-installed";
-const reSHOPS = new RegExp(/https:\/\/(amazon|walmart|knix).com/i);
 const API_SERVER =
     settings.ENV === "production" ? "api.bratags.com" : "api.dev.bratags.com";
 
@@ -24,7 +23,7 @@ let state = {
     unknowns: {},
 };
 function requestHandler(details) {
-    const shop = details.url.match(reSHOPS)?.[1];
+    const shop = details.url.match(shops.reALL)?.[1];
     const isTabRelated = details.tabId !== -1;
     const isMainFrame = details.frameId === 0;
 
@@ -76,7 +75,7 @@ async function getTagsByURL(url, ignoreShop = false) {
     if (cached) {
         return cached;
     }
-    const shop = url.match(reSHOPS)?.[1];
+    const shop = url.match(shops.reALL)?.[1];
     if (!shop && !ignoreShop) {
         console.error("no shop found for url: ", url);
         return;
@@ -155,7 +154,7 @@ async function popupHandler() {
         sendMessage({ unknown: { url: tab.url } });
         return;
     }
-    const shop = tab.url.match(reSHOPS)?.[1];
+    const shop = tab.url.match(shops.reALL)?.[1];
     if (!shop) {
         tags = await getTagsByURL(tab.url, true);
         if (!tags?.length) {
