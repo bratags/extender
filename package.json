@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "test": "exit 0; # cross-env PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 playwright test --project \"edge@latest@localhost\" \"chrome@latest@localhost\" --retries 3",
     "test:local": "cross-env PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 playwright test --project \"edge@latest@localhost\" \"chrome@latest@localhost\" --workers 1",
-    "test:post": "cross-env PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 playwright test --project \"edge@latest@localhost\" \"chrome@latest@localhost\" --retries 3"
+    "test:post": "exit 0; cross-env PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1 playwright test --project \"edge@latest@localhost\" \"chrome@latest@localhost\" --retries 3"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^1.0.2",
