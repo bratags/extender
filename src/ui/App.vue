@@ -166,7 +166,8 @@ function routeHandler(path) {
     )
 }
 const username = computed(() => {
-    return sessionId.match(/[^|]*/)[0]
+    console.log(sessionId, sessionId?.match(/:([^|]*)/)?.[1])
+    return sessionId?.match(/:([^|]*)/)?.[1]
 })
 provide("username", username)
 </script>

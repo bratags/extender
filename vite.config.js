@@ -11,6 +11,8 @@ import vuetify from 'vite-plugin-vuetify'
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
+const { MODE } = process.env;
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
     return {
@@ -39,11 +41,11 @@ export default defineConfig(({ command, mode }) => {
             ],
         },
         server: {
-            port: 3000,
-            https: {
+            port: 3070,
+            https: MODE === 'production' ? {
                 cert,
                 key
-            },
+            } : undefined
         }
     }
 })

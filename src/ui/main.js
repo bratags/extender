@@ -113,7 +113,8 @@ app.provide("clipboard", {
         getMessage: chrome.i18n?.getMessage || function (key) { return messages[key].message }
     }
     app.provide("i18n", i18n);
-    app.provide("sessionId", sw.sessionId);
+    console.log('sw: ', sw);
+    app.provide("sessionId", sw.sessionCookie);
     completeSetup()
 })();
 async function completeSetup() {

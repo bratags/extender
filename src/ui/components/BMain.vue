@@ -1,8 +1,8 @@
 <template>
     <v-container id="main" class="h-100 pa-0 bmain">
-        <b-tag v-if="tags.length" :tags="tags" :bra="bra" :isNew="isNew"></b-tag>
-        <b-bra v-else-if="!tags.length && bra" :bra="bra"></b-bra>
-        <b-unknown v-else-if="unknown" :unknown="unknown"></b-unknown>
+        <b-tag id="b-tag" v-if="tags.length" :tags="tags" :bra="bra" :isNew="isNew"></b-tag>
+        <b-bra id="b-bra" v-else-if="!tags.length && bra" :bra="bra"></b-bra>
+        <b-unknown id="b-unknown" v-else-if="unknown" :unknown="unknown"></b-unknown>
         <b-progress v-else />
     </v-container>
 </template>
