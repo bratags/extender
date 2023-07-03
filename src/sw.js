@@ -24,7 +24,8 @@ let state = {
     unknowns: {},
 }
 function requestHandler(details) {
-    const shop = details.url.match(shops.reALL)?.[1]
+    const origin = details.url.match(shops.reALL)?.[0]
+    const shop = origin?.split('.')?.[0]
     const isTabRelated = details.tabId !== -1
     const isMainFrame = details.frameId === 0
 
@@ -36,9 +37,12 @@ function requestHandler(details) {
     }
 }
 async function getTagById(id) {
-    const response = await fetch(`https://${API_SERVER}/v1/tag/${id}?sessionId=${sessionId}`, {
+    const response = await fetch(`https://${API_SERVER}/v1/tag/${id}`, {
         mode: "cors",
-        credentials: "include"
+        credentials: "include",
+        headers: {
+            'Cookie': `session.sid=${sessionCookie}`
+        },
     })
     if (/401|500/.test(response.status)) {
         console.error(response)
@@ -55,10 +59,13 @@ async function getTagsByGTIN(gtin) {
         return cached
     }
     const response = await fetch(
-        `https://${API_SERVER}/v1/tag/gtin/${gtin}/list?sessionId=${sessionId}`,
+        `https://${API_SERVER}/v1/tag/gtin/${gtin}/list`,
         {
             mode: "cors",
             credentials: "include",
+            headers: {
+                'Cookie': `session.sid=${sessionCookie}`
+            },
         }
     )
     if (/401|500/.test(response.status)) {
@@ -76,7 +83,8 @@ async function getTagsByURL(url, ignoreShop = false) {
     if (cached) {
         return cached
     }
-    const shop = url.match(shops.reALL)?.[1]
+    const origin = url.match(shops.reALL)?.[0]
+    const shop = origin?.split('.')?.[0]
     if (!shop && !ignoreShop) {
         console.error("no shop found for url: ", url)
         return
@@ -137,7 +145,7 @@ async function updateSources() {
     }
 }
 async function supportedSource(url) {
-    const sources = cache.lru.get("sources")?.length ? cache.lru.get("sources"): (await updateSources())
+    const sources = cache.lru.get("sources")?.length ? cache.lru.get("sources") : (await updateSources())
     return sources.find((item) =>
         item.urls.find((itemUrl) =>
             url.toLowerCase().includes(itemUrl.toLowerCase())
@@ -159,7 +167,8 @@ async function popupHandler() {
         sendMessage({ unknown: { url: tab.url } })
         return
     }
-    const shop = tab.url.match(shops.reALL)?.[1]
+    const origin = tab.url.match(shops.reALL)?.[0]
+    const shop = origin?.split('.')?.[0]
     if (!shop) {
         tags = await getTagsByURL(tab.url, true)
         if (!tags?.length) {
