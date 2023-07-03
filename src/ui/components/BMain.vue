@@ -8,7 +8,7 @@
 </template>
 <style scoped></style>
 <script setup>
-import { ref, computed } from "vue"
+import { computed } from "vue"
 import BTag from "./BTag.vue"
 import BBra from "./BBra.vue"
 import BUnknown from "./BUnknown.vue"

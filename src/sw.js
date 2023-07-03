@@ -11,7 +11,7 @@ importScripts(
 
 amplitude.getInstance().init("0475f970e02a8182591c0491760d680a")
 
-let sessionCookie;
+let sessionCookie
 const VERSION = "0.0.0"
 const INSTALL_URL = "https://bratags.com/extension-installed"
 const API_SERVER =
@@ -137,7 +137,7 @@ async function updateSources() {
     }
 }
 async function supportedSource(url) {
-    const sources = cache.lru.get("sources") || (await updateSources())
+    const sources = cache.lru.get("sources")?.length ? cache.lru.get("sources"): (await updateSources())
     return sources.find((item) =>
         item.urls.find((itemUrl) =>
             url.toLowerCase().includes(itemUrl.toLowerCase())
@@ -147,12 +147,10 @@ async function supportedSource(url) {
 async function popupHandler() {
     let tags
 
-    const tab = (
-        await chrome.tabs.query({
-            highlighted: true,
-            windowId: chrome.windows.WINDOW_ID_CURRENT,
-        })
-    )?.[0]
+    const [tab] = await chrome.tabs.query({
+        highlighted: true,
+        currentWindow: true
+    })
     if (!tab) {
         return
     }
@@ -211,14 +209,14 @@ async function getSessionCookie() {
         sessionCookie
     }
 }
-async function getCookieFromStore() {
+async function getCookieFromStore(name = 'connect.sid') {
     const window = await chrome.windows.getCurrent()
     const tabs = await chrome.tabs.query({ windowId: window.id })
     const stores = await chrome.cookies.getAllCookieStores()
 
     const store = stores.find(store => store.tabIds.find(tabId => tabs.find(tab => tab.id === tabId)))
     const cookies = await chrome.cookies.getAll({
-        name: "connect.sid",
+        name,
         url: `https://${API_SERVER}`,
         storeId: store.id
     })
@@ -255,7 +253,7 @@ function messageHandler(request, sender, reply) {
             )
             break
         case "cookie":
-            getCookieFromStore().then((cookie) => reply(cookie))
+            getCookieFromStore(request.name).then((cookie) => reply(cookie))
             break
         case "tag":
             const urlId = uuidv5(request.url, uuidv5.URL)

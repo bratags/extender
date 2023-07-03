@@ -17,7 +17,7 @@
             </div>
 
             <div class="d-flex justify-center">
-                <b-tag-notify :bra="bra"></b-tag-notify>
+                <tag-notify :bra="bra"></tag-notify>
             </div>
         </div>
     </v-container>
@@ -31,10 +31,10 @@
 }
 </style>
 <script setup>
-import { inject, ref, computed } from 'vue'
+import { inject, ref, computed, onMounted } from 'vue'
 import { useAuth0 } from "@auth0/auth0-vue"
 
-import BTagNotify from "./BTagNotify.vue"
+import TagNotify from "./TagNotify.vue"
 import UnknownForm from './UnknownForm.vue'
 
 const { VITE_SERVER } = import.meta.env
@@ -50,12 +50,18 @@ const props = defineProps({
         required: true
     }
 })
-const cookie = ref()
-chrome.runtime.sendMessage(extensionId, {
-    command: 'cookie'
-}, response => cookie.value = response)
-const showNoticeSettingsLink = computed(() => {
-    return cookie.value?.webpush || cookie.value?.email ? false : true
+const showNoticeSettingsLink = ref(false)
+onMounted(() => {
+    chrome.runtime.sendMessage(extensionId, {
+        command: 'cookie',
+        name: 'notice'
+    }, cookie => {
+        const json = cookie.match(/j:(.*)/)?.[1]
+        if (json) {
+            const cookieObj = JSON.parse(json)
+            showNoticeSettingsLink.value = !cookieObj?.webpush && !cookieObj?.email
+        }
+    })
 })
 const settingsURL = computed(() => `https://${VITE_SERVER}/settings`)
 const bra = computed(() => ({
