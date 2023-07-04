@@ -1,11 +1,9 @@
 <template>
     <v-sheet width="400">
         <v-form v-if="!snackbar.enabled" v-model="valid" @submit.prevent="submit" class="d-flex flex-column">
-            <price-suggestion :price="bra?.price" :disableSuggestion="bra?.gtin == '00000000000000'"
-                @price="priceSuggestionHandler"></price-suggestion>
-            <v-btn :loading="loading" :disabled="!valid" :rounded="loading ? 'xl' : undefined"
-                class="text-h6 text-uppercase" :class="loading ? 'mx-auto' : ''" type="submit">{{
-                    i18n.getMessage('tag') }}
+            <price-suggestion :price="bra?.price" :disableSuggestion="bra?.gtin == '00000000000000'" @price="priceSuggestionHandler"></price-suggestion>
+            <v-btn :loading="loading" :disabled="!valid" :rounded="loading ? 'xl' : undefined" class="text-h6 text-uppercase" :class="loading ? 'mx-auto' : ''" type="submit">{{
+                i18n.getMessage('tag') }}
                 <template v-slot:prepend>
                     <v-icon icon="new_label" color="primary"></v-icon>
                 </template>
@@ -49,6 +47,7 @@ const priceSuggestionHandler = (price) => {
 const submit = async (event) => {
     const results = await event
 
+    debugger
     if (results.valid) {
         loading.value = true
         try {
@@ -76,11 +75,12 @@ const submit = async (event) => {
                                     url: props.bra.url,
                                     shop: props.bra.shop,
                                     seller: props.bra.seller,
-                                    amount: data.value.fields.price
+                                    amount: props.bra.price
                                 }
                             },
                             creator: username.value
-                        }
+                        },
+                        desiredPrice: data.value.fields.price
                     })
                 })
             if (!response.ok) {

@@ -56,7 +56,7 @@ onMounted(() => {
         command: 'cookie',
         name: 'notice'
     }, cookie => {
-        const json = cookie.match(/j:(.*)/)?.[1]
+        const json = cookie?.match(/j:(.*)/)?.[1]
         if (json) {
             const cookieObj = JSON.parse(json)
             showNoticeSettingsLink.value = !cookieObj?.webpush && !cookieObj?.email
