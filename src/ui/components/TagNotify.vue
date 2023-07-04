@@ -80,7 +80,10 @@ const submit = async (event) => {
                             },
                             creator: username.value
                         },
-                        desiredPrice: data.value.fields.price
+                        desiredPrice: {
+                            amount: data.value.fields.price,
+                            currency: 'USD'
+                        }
                     })
                 })
             if (!response.ok) {
