@@ -180,7 +180,7 @@ jobs:
 
           ls -laR /tmp/artifact
 
-          response=$(curl https://login.microsoftonline.com/5c9eedce-81bc-42f3-8823-48ba6258b391/oauth2/v2.0/token \
+          response=$(curl https://login.microsoftonline.com/${{ vars.MPC_PRODUCT_ID }}/oauth2/v2.0/token \
             -H "Content-Type: application/x-www-form-urlencoded" \
             -d "client_id=${{ vars.MPC_CLIENT_ID }}" \
             -d "scope=https://api.addons.microsoftedge.microsoft.com/.default" \
