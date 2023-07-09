@@ -44,7 +44,7 @@
 	"background": {
 		"service_worker": "/src/sw.js"
 	},
-	"permissions": ["storage", "background", "tabs", "notifications", "contextMenus", "scripting", "webRequest", "cookies"],
+	"permissions": ["storage", "tabs", "notifications", "scripting", "webRequest", "cookies"],
 	"host_permissions": ["<all_urls>"],
 	"externally_connectable": {
 		"matches": ["*://*.bratags.com/*"]
